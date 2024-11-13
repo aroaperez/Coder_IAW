@@ -11,41 +11,38 @@
             text-align: center;
             font-size: 14px;
         }
-        .black {
-            background-color: black;
+        .purple {
+            background-color: purple;
             color: green;
         }
-        .green {
-            background-color: green;
+        .grey {
+            background-color: grey;
             color: black;
         }
     </style>
 </head>
 <body>
-    <h2>Vamos a crear nuestro tablero de ajedrez</h2>
     <table>
         <?php
-            $filas= 8;
-            $columnas= 8; 
+            $filas = 8;
+            $columnas = 8;
 
-            $fila= 1;
+            $fila = 1;
             while ($fila <= $filas) {
-                echo "<tr>";
+                echo "<tr>" ;
                 $columna = 1;
-                while ($columna <= $columnas) {
-                    if(($columna + $fila) % 2 == 0) {
-                        // PAR
-                        echo "<td class='green'></td>";
+                while ($columna <= $columnas ) {
+                    if (($columna + $fila) % 2 == 0) {
+                        echo "<td class='purple'></td>";
                     } else {
-                        // IMPAR
-                        echo "<td class='black'></td>";
+                        echo "<td class='grey'></td>";
                     }
                     $columna += 1;
                 }
-                echo "</tr>"; 
+                echo "</tr>" ;
                 $fila += 1;
             }
         ?>
-    </table>
+        </table>
 </body>
 </html>

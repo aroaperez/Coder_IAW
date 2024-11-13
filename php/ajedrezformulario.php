@@ -42,8 +42,8 @@
                     }
                     $columna += 1;
                 }
-                echo "</tr>"; // Cierra la fila después de que se completa
-                $fila += 1; // Aumenta la fila aquí
+                echo "</tr>";
+                $fila += 1;
             }
         echo "</table>";
 
@@ -56,6 +56,5 @@
         <hr>
         <input type="submit">
     </form>
-
 </body>
 </html>

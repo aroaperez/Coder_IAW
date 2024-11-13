@@ -5,8 +5,8 @@ function cambia ($array, $posicion, $valor){
     echo "Dentro de la funcion";
     var_dump($array);
 }
-$tabla = ["Pepe", "Juan", "Maria"];
-cambia($tabla,2,"Susana");
+$tabla = ["AROA", "ALBA", "ANA"];
+cambia($tabla,1,"PEDRO");
 
 echo ("Fuera de la tabla");
 var_dump($tabla);
