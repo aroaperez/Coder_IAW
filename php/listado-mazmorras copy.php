@@ -25,8 +25,6 @@
     $_SESSION["UltimaPagina"] = $_SERVER["REQUEST_URI"];
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
 <head>
     <meta charset="UTF-8">
 </head>
@@ -41,7 +39,7 @@
      th, td {
         border: solid 1px black;
         border-collapse: collapse;
-        /* padding: 5px; */
+        padding: 8px; 
     }
     form {
         display: inline;
@@ -66,7 +64,10 @@
             if (isset($_GET['Borrar'])) {
                 $BorrarMazmorra= $_GET["mazmorra"];
                 $conexion->query("
-                    DELETE FROM Mazmorra WHERE idmazmorra = $BorrarMazmorra;
+                    DELETE FROM Tesela WHERE idmazmorra = $BorrarMazmorra;
+                ");
+                $conexion->query("
+                     DELETE FROM Mazmorra WHERE idmazmorra = $BorrarMazmorra;
                 ");
             } 
         ?>
@@ -91,6 +92,7 @@
         $conexion->query("
         INSERT INTO Mazmorra (nombre) VALUES ('$nombre');
         ");
+        $NuevoID = $conexion->insert_id;
         $Teselas = $conexion->query("
             SELECT * FROM Tesela WHERE idmazmorra = $ID;
         ");
@@ -101,9 +103,9 @@
             $columna = $T['columna'];
             $tesela = $T['tesela'];
             $TeselasInsert = $conexion->query("
-                INSERT INTO Tesela (idmazmorra,fila,columna,tesela) VALUES ($idmazmorra,$fila,$columna,$tesela);
+                INSERT INTO Tesela (idmazmorra,fila,columna,tesela) VALUES ($NuevoID,$fila,$columna,'$tesela');
             ");
-        }
+        }       
     }
         $MostrarTablas = $conexion->query("
             SELECT idmazmorra, nombre FROM Mazmorra ORDER BY idmazmorra;
@@ -124,7 +126,7 @@
                 echo "</form>";
                 echo "<form action='duplicar-mazmorra.php'>";
                     echo "<input type='hidden' value='$fila[idmazmorra]' name='mazmorra'>";
-                    echo "<inpucleart type='submit' value='Duplicar' name='Duplicar' >";                
+                    echo "<input type='submit' value='Duplicar' name='Duplicar' >";                
                 echo "</form>";
             echo "</td>";
         echo "</tr>";
@@ -132,4 +134,4 @@
     ?>
     </table>
 </body>
-</html>
+

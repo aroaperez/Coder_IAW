@@ -8,8 +8,6 @@
     session_start();
     $_SESSION["UltimaPagina"] = $_SERVER["REQUEST_URI"];
 ?>
-<!DOCTYPE html>
-<html lang="es">
 <head>
     <meta charset="UTF-8">
     <script>
@@ -35,14 +33,14 @@
         }
         td {
             border: solid 1px black;
-            height: 40px;
-            width: 40px;
             cursor: pointer; /*CELDAS EN LAS QUE SE PUEDE HACER CLICK */
+            padding: 0; 
         }
     </style>
 <head>
 <body>
     <?php
+        // MAZMORRA QUE QUEREMOS DUPLICAR
         if (isset($_GET['mazmorra'])) {
             $ID = $_GET['mazmorra'];
             $TablaDuplicar = $conexion->query( "
@@ -56,11 +54,36 @@
             $NuevoNombre='';
             $ID='';
         }
+        
+        // ACTUALIZAR TESELA
+        if (isset($_GET['ActualizarMazmorra'])) {
+            $NuevaFila = $_GET['fila'];
+            $NuevaColumna = $_GET['columna'];
+            $NuevaTesela = $_GET['tesela'];
+            $NuevoID = $_GET['mazmorra'];
+
+            $SeleccionarTesela = $conexion->query("
+                SELECT * FROM Tesela WHERE idmazmorra=$NuevoID AND fila=$NuevaFila AND columna=$NuevaColumna
+            ");
+            $SeleccionarTeselaArray = mysqli_fetch_array($SeleccionarTesela);
+
+            if ($SeleccionarTeselaArray) {
+                $Actualizar = $conexion->query("
+                    UPDATE Tesela SET Tesela='$NuevaTesela' WHERE idmazmorra=$NuevoID AND fila=$NuevaFila AND columna=$NuevaColumna
+                ");
+            } else {
+                $Insertar = $conexion->query("
+                    INSERT INTO Tesela VALUES ($NuevoID, $NuevaFila, $NuevaColumna, '$NuevaTesela')
+                ");
+            }
+        }
+
         $Teselas = $conexion->query("
             SELECT * FROM Tesela WHERE idmazmorra = $ID;
         ");
         $ArrayTeselas = $Teselas->fetch_all(MYSQLI_ASSOC);
     ?>
+
     <button><a href="listado-mazmorras.php">VOLVER AL LISTADO</a></button>
     <H2>NOMBRE DE LA MAZMORRA: <?php echo ($NuevoNombre); ?>(<?php echo ($ID); ?>)</H2>
     <H2>EDITAR MAZMORRA</H2>
@@ -71,14 +94,13 @@
             echo "<tr>";
                 for ($a = 1; $a <= 10; $a++) {
                     if ($ArrayTeselas) {
+                        $ImagenT = "E.png";
                         foreach ($ArrayTeselas as $FILA) {
                             if ($i == $FILA["fila"] && $a == $FILA["columna"]) {
                                 $ImagenT = $FILA["tesela"];
-                            } else {
-                                $ImagenT = "E.png";
-                            }
-                        echo "<td onclick='SELECCIONARFILA($i); SELECCIONARCOLUMNA($a)'><img src='tiles/$ImagenT'></td>";
+                            } 
                         }
+                        echo "<td onclick='SELECCIONARFILA($i); SELECCIONARCOLUMNA($a)'><img src='tiles/$ImagenT'></td>";
                     } else {
                         echo "<td onclick='SELECCIONARFILA($i); SELECCIONARCOLUMNA($a)'><img src='tiles/E.png'></td>";
                     }
@@ -106,18 +128,19 @@
     </table>
     <br>
     <form method="GET"> 
+        <input type="hidden" name="mazmorra" value="<?php echo $ID ?>">
         <label>Fila:</label>
-            <input type="number" name="fila">
+            <input type="number" name="fila" id="fila">
         <label>Columna:</label>
-            <input type="number" name="columna">
+            <input type="number" name="columna" id="columna">
         <label>Tesela:</label>
-        <select>
+        <select name="tesela" id="tesela">
             <?php
                 foreach($ImagenesTeselas as $Imagen) {
                     echo "<option value='$Imagen'>$Imagen</option>";
                 }
             ?>
         </select>
-        <button type="SUBMIT" name="submit">ACTUALIZAR MAZMORRA</button>
+        <button type="SUBMIT" name="ActualizarMazmorra">ACTUALIZAR MAZMORRA</button>
     </form>
 </body>

@@ -7,8 +7,6 @@
     session_start();
     $_SESSION["UltimaPagina"] = $_SERVER["REQUEST_URI"];
 ?>
-<!DOCTYPE html>
-<html lang="es">
 <head>
     <meta charset="UTF-8">
 </head>
@@ -56,14 +54,13 @@
             echo "<tr>";
                 for ($a = 1; $a <= 10; $a++) {
                     if ($ArrayTeselas) {
+                        $ImagenT = "E.png";
                         foreach ($ArrayTeselas as $FILA) {
                             if ($i == $FILA["fila"] && $a == $FILA["columna"]) {
                                 $ImagenT = $FILA["tesela"];
-                            } else {
-                                $ImagenT = "E.png";
-                            }
-                        echo "<td><img src='tiles/$ImagenT'></td>";
+                            } 
                         }
+                        echo "<td><img src='tiles/$ImagenT'></td>";
                     } else {
                         echo "<td><img src='tiles/E.png'></td>";
                     }
