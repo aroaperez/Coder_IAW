@@ -11,20 +11,66 @@
     <meta charset="UTF-8">
 </head>
 <style>
-    body{
-        text-align: center;
-    }
-     table {
-        margin: auto;
-        border: solid 1px black;
-        border-collapse: collapse;
-    }
-    td {
-        border: solid 1px black;
-        height: 40px;
-        width: 40px;
-    }
-</style>
+        body{
+            font-family:  Arial, sans-serif;
+            background: linear-gradient(135deg, #a8c9e3,  #d1e8f7, #b3d7f7,  #6ea8e3);          
+            background-color: #f4f4f4;
+            background-attachment: fixed;
+            text-align: center;
+        }
+        h2 {
+            font-size: 25px;
+            color: #333;
+            margin: 10px 0;
+        }
+        button {
+            background-color: #cfe7c2;
+            border: none;
+            color: black;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        a, button a {
+            text-decoration: none;
+            color: black;
+        }
+        table {
+            margin: 20px auto;
+            border: solid 1px #ddd;
+            border-radius: px;
+            background-color: #fff;
+            border-collapse: collapse;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px;
+            display: inline-block;
+        }
+        td {
+            border: solid 1px black;
+            padding: 0; 
+        }
+        form {
+            margin-top: 20px;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px;
+            display: inline-block;
+        }
+        input, select {
+            padding: 5px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
 <body>
     <?php
         if (isset($_GET['mazmorra'])) {

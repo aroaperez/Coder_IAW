@@ -24,17 +24,75 @@
     </script>
     <style>
         body{
+            font-family:  Arial, sans-serif;
+            background: linear-gradient(135deg, #a8c9e3,  #d1e8f7, #b3d7f7,  #6ea8e3);          
+            background-color: #f4f4f4;
+            background-attachment: fixed;
             text-align: center;
         }
+        h2 {
+            font-size: 25px;
+            color: #333;
+            margin: 10px 0;
+        }
+        button {
+            background-color: #cfe7c2;
+            border: none;
+            color: black;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        a, button a {
+            text-decoration: none;
+            color: black;
+        }
         table {
-            margin: auto;
-            border: solid 1px black;
+            margin: 20px auto;
+            border: solid 1px #ddd;
+            border-radius: 8px;
+            background-color: #fff;
             border-collapse: collapse;
+        }
+        .BordesPaleta {
+            border: 2px dotted;
+        }
+        .TablaPaleta {
+            margin-top: 20px;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px;
+            display: inline-block;
         }
         td {
             border: solid 1px black;
             cursor: pointer; /*CELDAS EN LAS QUE SE PUEDE HACER CLICK */
-            padding: 0; 
+            padding: 0;
+        }
+        form {
+            margin-top: 20px;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px;
+            display: inline-block;
+        }
+        input, select {
+            padding: 5px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="number"], select {
+            width: 100px;
         }
     </style>
 <head>
@@ -115,11 +173,11 @@
                     "TI.png", "TIE.png", "TIT.png"];
     ?>
     <H2>PALETA</H2>
-    <table>
+    <table class="TablaPaleta">
         <tr>
             <?php
             foreach ($ImagenesTeselas as $Imagen){
-                echo "<td>";
+                echo "<td class='BordesPaleta'>";
                     echo "<img src='tiles/$Imagen' onclick='SELECCIONARTESELA(\"$Imagen\")'>";
                 echo "</td>";
             };

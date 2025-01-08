@@ -28,26 +28,57 @@
 <head>
     <meta charset="UTF-8">
 </head>
-<style>
-    body{
-        text-align: center;
-    }
-    table {
-        margin: auto;
-        border-collapse: collapse;
-    }
-     th, td {
-        border: solid 1px black;
-        border-collapse: collapse;
-        padding: 8px; 
-    }
-    form {
-        display: inline;
-    }
+    <style>
+        body{
+            font-family:  Arial, sans-serif;
+            background: linear-gradient(135deg, #a8c9e3,  #d1e8f7, #b3d7f7,  #6ea8e3);          
+            background-color: #f4f4f4;
+            background-attachment: fixed;
+            text-align: center;
+        }
+        h2 {
+            font-size: 25px;
+            color: #333;
+            margin: 10px 0;
+        }
+        table {
+            margin: auto;
+            border: solid 1px #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            border-collapse: collapse;
+            box-shadow: 0 2px 5px;
+            display: inline-block;
+        }
+        th,td {
+            border: solid 0px black;
+            padding: 8px; 
+            text-align: center;
+        }
+        form {
+            display: inline;
+            padding: 5px;
+        }
+        .CreacionMazmorra {
+            margin-top: 20px;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px;
+            display: inline-block;
+        }
+        input, select {
+            padding: 5px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
 </style>
 <body>
     <h2>CREACIÓN DE MAZMORRAS</h2>
-        <form method="GET">
+        <form method="GET" class="CreacionMazmorra">
         <label>Nombre de la Mazmorra </label>
         <input type="text" name="nombre" placeholder="Nombre">
         <input type="submit" name="CREAR" value="CREAR">
@@ -80,9 +111,9 @@
     <h2>LISTADO DE MAZMORRAS</h2>
     <table>
             <tr>
-                <th>IdMazmorra</th>
-                <th>Nombre</th>
-                <th>Botones</th>
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <th>BOTONES</th>
             </tr>
     <?php
      // DUPLICAR UNA  MAZMORRA
