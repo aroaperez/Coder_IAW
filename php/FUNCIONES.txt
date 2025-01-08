@@ -1,0 +1,33 @@
+UCFIRST --> sirve para capitalizar la primera letra de una palabra.
+    $palabracapitalizada = ucfirst($palabra);
+UCWORDS --> capitaliza las primeras letras de cada palabra de un texto.
+    $textocapitalizado = ucwords($texto);
+EXPLODE --> divide una cadena en un array basándose en un delimitador específico.
+    $frase = "Hola mundo PHP";
+    $palabra = explode(" ", $frase); // Separa por espacios
+IMPLODE -->  une los elementos de un array en una sola cadena, utilizando un delimitador entre cada elemento.
+    $palabras = ["Hola", "mundo", "PHP"];
+    $cadena = implode(" ", $palabras); // Une con espacios  
+SPRINTF -->genera una cadena formateada 
+    $nombre = "Juan";
+    $edad = 25;
+    $texto = sprintf("Mi nombre es %s y tengo %d años.", $nombre, $edad);
+%s: Cadena de texto.
+%d: Número entero decimal (positivo o negativo).
+%f: Número de punto flotante (puedes especificar la cantidad de decimales, por ejemplo, %.2f para dos decimales).
+%x: Número entero en formato hexadecimal.
+%b: Número binario.
+%c: Carácter.
+%u: Número entero sin signo.
+TRIM -->  elimina los espacios en blanco u otros caracteres no deseados al principio y al final de una cadena.
+    $texto = "   Hola, mundo!   ";
+    $texto_limpio = trim($texto);
+    echo $texto_limpio;
+FILTER_VAR --> filtra una variable con el filtro que se indique
+    $email = "usuario@ejemplo.com";
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo "El correo electrónico es válido.";
+    } else {
+    echo "El correo electrónico no es válido.";
+    }
+
