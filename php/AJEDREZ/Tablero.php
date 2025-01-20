@@ -2,7 +2,17 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+// Iniciar la sesión
+session_start();
+// Verificar si el usuario está autenticado
+if (!isset($_SESSION['user_id'])) {
+    header("Location: Sesiones.php"); // Redirigir a la página de inicio de sesión si no está autenticado
+    exit();
+}
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,8 +54,7 @@ error_reporting(E_ALL);
     </style>
 </head>
 <body>
-
-<h2>AJEDREZ</h2>
+<h2>AJEDREZ - Bienvenido, <?php echo $_SESSION['nombre_usuario']; ?></h2>
 <table>
     <?php
     $ImagenesAjedrezBlancas = ["torre-blanca.png", "caballo-blanco.png", "alfil-blanco.png", "reina-blanca.png", "rey-blanco.png", "alfil-blanco.png", "caballo-blanco.png", "torre-blanca.png"];
@@ -99,5 +108,3 @@ error_reporting(E_ALL);
     ?>
 </table>
 
-</body>
-</html>
