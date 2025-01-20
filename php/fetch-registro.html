@@ -1,0 +1,34 @@
+<script>
+    async function inputChanged(input){
+        const text = input.value;
+        console.log ("Voy a preguntar por:" , text);
+
+        const json_request = {
+            usuario: text
+        };
+
+        const result = await fetch( `./fetch-registro.php`, {
+            "method": "POST" ,
+            "Content-Type": "application/json",
+            "body": JSON.stringify(json_request),  
+        });
+
+        const json_response = await result.json();
+        console.log(json_response);
+
+        const aviso = document.getElementById("aviso");
+        const boton_registro = document.getElementById("boton_registro");
+        if( json_response.existe){
+            aviso.innerText = "Usuario ya exsite";
+            boton_registro.disabled= true;
+        } else {
+            aviso.innerText = "";
+            boton_registro.disabled= false;
+        }
+
+    }
+</script>
+
+<input type="text" onkeyup="inputChanged(this);"></input>
+<div id="aviso"></div>
+<input id="boton_registro" type="button" value="Registrarse"></input>

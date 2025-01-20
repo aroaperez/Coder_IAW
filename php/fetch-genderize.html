@@ -1,0 +1,18 @@
+<script>
+    async function inputChanged(input){
+        const text = input.value;
+        console.log ("Voy a preguntar por:" , text);
+        const result = await fetch( `https://api.genderize.io?name=${text}`, {
+            method: "GET"
+        });
+
+        const json = await result.json();
+
+        const genderDiv = document.getElementById("gender");
+        genderDiv.innertext = json.gender;
+
+    }
+</script>
+
+<input type="text" onkeyup="inputChanged(this);"></input>
+<div id="gender"></div>

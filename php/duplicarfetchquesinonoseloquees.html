@@ -1,0 +1,28 @@
+<html>
+
+    <script>
+        async function duplicarInput(input) {
+            const numero = input.value;
+
+            const numero_json = {
+                num: numero
+            };
+            
+            const json_request = await fetch ( `./duplicarfetchquesinonoseloquees.php`, {
+            "method": "POST" ,
+            "Content-Type": "application/json",
+            "body": JSON.stringify(numero_json),  
+            });
+
+            const json_response = await json_request.json();
+            console.log(json_response);
+
+            doble = document.getElementById("doubleNumber");
+            doble.innerText = json_response.num;
+        }
+    </script>
+
+    <input type="number" onchange="duplicarInput(this)" id="inputNumber">
+    <div id="doubleNumber"></div>
+
+</html>
